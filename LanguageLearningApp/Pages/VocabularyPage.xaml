@@ -4,9 +4,9 @@
              x:Class="LanguageLearningApp.VocabularyPage"
              Title="HomePage">
     <VerticalStackLayout>
-        <Label 
+        <Label
             Text="Welcome to vocabulary page"
-            VerticalOptions="Center" 
+            VerticalOptions="Center"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

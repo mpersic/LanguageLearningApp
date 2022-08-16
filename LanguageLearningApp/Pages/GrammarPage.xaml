@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LanguageLearningApp.GrammarPage"
-             Title="GrammarPage">
+<ContentPage
+    x:Class="LanguageLearningApp.GrammarPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LanguageLearningApp"
+    Title="GrammarPage">
+    <ContentPage.BindingContext>
+        <local:GrammarViewModel />
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout>
-        <Label 
+        <Label
+            HorizontalOptions="Center"
             Text="Welcome to grammar page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" />
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding Name}"
+            VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

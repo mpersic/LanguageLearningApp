@@ -4,9 +4,9 @@
              x:Class="LanguageLearningApp.AboutPage"
              Title="AboutPage">
     <VerticalStackLayout>
-        <Label 
+        <Label
             Text="Welcome to about page"
-            VerticalOptions="Center" 
+            VerticalOptions="Center"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
