@@ -15,11 +15,14 @@
 
     <Application.MainPage>
         <Shell>
-            <TabBar x:Name="MainTabs">
+            <TabBar x:Name="MainTabs" Route="MainTab">
                 <Tab Title="Vocabulary" Icon="dotnet_bot.svg">
                     <ShellContent ContentTemplate="{DataTemplate local:VocabularyPage}" />
                 </Tab>
-                <Tab Title="Grammar" Icon="dotnet_bot.svg">
+                <Tab
+                    Title="Grammar"
+                    Icon="dotnet_bot.svg"
+                    Route="GrammarPage">
                     <ShellContent ContentTemplate="{DataTemplate local:GrammarPage}" />
                 </Tab>
                 <Tab Title="About" Icon="dotnet_bot.svg">

@@ -10,13 +10,25 @@
     </ContentPage.BindingContext>
 
     <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to grammar page!"
-            VerticalOptions="Center" />
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding Name}"
-            VerticalOptions="Center" />
+        <ListView ItemsSource="{Binding GrammarUnits}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <HorizontalStackLayout Padding="10">
+                            <Label
+                                FontAttributes="Italic"
+                                Text="{Binding UnitName}"
+                                VerticalOptions="End" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TestCommand}" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Command="{Binding GoToExamCommand}" />
     </VerticalStackLayout>
 </ContentPage>
