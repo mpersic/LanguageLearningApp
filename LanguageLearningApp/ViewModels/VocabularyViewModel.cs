@@ -1,17 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Java.Util.Jar.Attributes;
 
 namespace LanguageLearningApp
 {
     public partial class VocabularyViewModel : ObservableObject
     {
+        #region Fields
+
         [ObservableProperty]
         private List<Unit> vocabularyUnits;
+
+        #endregion Fields
+
+        #region Constructors
 
         public VocabularyViewModel()
         {
@@ -23,5 +23,7 @@ namespace LanguageLearningApp
                 }
             };
         }
+
+        #endregion Constructors
     }
 }

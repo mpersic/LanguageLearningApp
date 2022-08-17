@@ -1,17 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
 using System.Windows.Input;
-using static Android.Content.ClipData;
 
 namespace LanguageLearningApp
 {
     public partial class GrammarViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private string name;
+        #region Fields
+        private ICommand goToExamCommand;
 
         [ObservableProperty]
         private List<Unit> grammarUnits;
+
+        [ObservableProperty]
+        private string name;
+
+        private ICommand testCommand;
+
+        #endregion Fields
+
+        #region Constructors
 
         public GrammarViewModel()
         {
@@ -25,13 +33,15 @@ namespace LanguageLearningApp
             Name = "Klara";
         }
 
-        private ICommand testCommand;
+        #endregion Constructors
 
+        #region Properties
+        public ICommand GoToExamCommand => goToExamCommand ??= new Command(GoToExam);
         public ICommand TestCommand => testCommand ??= new Command(Test);
 
-        private ICommand goToExamCommand;
+        #endregion Properties
 
-        public ICommand GoToExamCommand => goToExamCommand ??= new Command(GoToExam);
+        #region Methods
 
         private async void GoToExam()
         {
@@ -42,5 +52,7 @@ namespace LanguageLearningApp
         {
             Console.WriteLine("Hello");
         }
+
+        #endregion Methods
     }
 }

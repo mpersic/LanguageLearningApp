@@ -2,12 +2,21 @@
 
 public partial class MainPage : ContentPage
 {
+    #region Fields
     private int count = 0;
+
+    #endregion Fields
+
+    #region Constructors
 
     public MainPage()
     {
         InitializeComponent();
     }
+
+    #endregion Constructors
+
+    #region Methods
 
     private void OnCounterClicked(object sender, EventArgs e)
     {
@@ -20,4 +29,6 @@ public partial class MainPage : ContentPage
 
         SemanticScreenReader.Announce(CounterBtn.Text);
     }
+
+    #endregion Methods
 }

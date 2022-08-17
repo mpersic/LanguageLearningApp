@@ -4,6 +4,8 @@ namespace LanguageLearningApp;
 
 public static class MauiProgram
 {
+    #region Methods
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -21,4 +23,6 @@ public static class MauiProgram
 
         return builder.Build();
     }
+
+    #endregion Methods
 }
