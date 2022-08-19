@@ -1,4 +1,6 @@
-﻿namespace LanguageLearningApp;
+﻿using LanguageLearningApp.Pages;
+
+namespace LanguageLearningApp;
 
 public partial class App : Application
 {
@@ -7,7 +9,7 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-
+        Routing.RegisterRoute(nameof(ExamPage), typeof(ExamPage));
         //MainPage = new AppShell();
     }
 
