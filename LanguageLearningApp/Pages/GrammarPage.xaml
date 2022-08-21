@@ -5,11 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LanguageLearningApp"
     Title="GrammarPage">
-    <ContentPage.BindingContext>
-        <local:GrammarViewModel />
-    </ContentPage.BindingContext>
 
     <VerticalStackLayout>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
         <ListView ItemsSource="{Binding GrammarUnits}">
             <ListView.ItemTemplate>
                 <DataTemplate>

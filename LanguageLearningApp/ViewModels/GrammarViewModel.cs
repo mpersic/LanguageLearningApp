@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
+using LanguageLearningApp.ViewModels;
 using System.Windows.Input;
 
 namespace LanguageLearningApp
@@ -7,10 +8,14 @@ namespace LanguageLearningApp
     public partial class GrammarViewModel : ObservableObject
     {
         #region Fields
+        public IGrammarService GrammarService;
         private ICommand goToExamCommand;
 
         [ObservableProperty]
         private List<Unit> grammarUnits;
+
+        [ObservableProperty]
+        private bool isLoading;
 
         [ObservableProperty]
         private string name;
@@ -21,16 +26,9 @@ namespace LanguageLearningApp
 
         #region Constructors
 
-        public GrammarViewModel()
+        public GrammarViewModel(IGrammarService grammarService)
         {
-            GrammarUnits = new List<Unit>()
-            {
-                new Unit
-                {
-                    UnitName = "Present"
-                }
-            };
-            Name = "Klara";
+            GrammarService = grammarService;
         }
 
         #endregion Constructors

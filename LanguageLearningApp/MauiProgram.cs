@@ -21,6 +21,17 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        //services
+        builder.Services.AddSingleton<IGrammarService, GrammarService>();
+
+        //viewmodels
+        builder.Services.AddSingleton<GrammarViewModel>();
+        builder.Services.AddSingleton<VocabularyViewModel>();
+
+        //pages
+        builder.Services.AddSingleton<GrammarPage>();
+        builder.Services.AddSingleton<VocabularyPage>();
+
         return builder.Build();
     }
 
