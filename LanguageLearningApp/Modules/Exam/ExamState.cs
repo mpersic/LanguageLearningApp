@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageLearningApp.Navigation
+namespace LanguageLearningApp
 {
-    internal interface ICustomNavigationService
+    public enum ExamState
     {
+        Prompt,
+        Enter,
+        Revise,
+        Final
     }
 }

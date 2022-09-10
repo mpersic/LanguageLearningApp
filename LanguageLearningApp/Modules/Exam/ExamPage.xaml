@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LanguageLearningApp.Pages.ExamPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Vježba">
+
+    <Grid>
+
+        <!--Prompt for exam state-->
+        <Frame
+                IsVisible="{Binding PromptForExamIsVisible}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            <VerticalStackLayout
+                    Spacing="10">
+                <Label
+                        Text="Želite li početi test ili ponoviti gradivo?" />
+                <HorizontalStackLayout
+                        Spacing="10"
+                        HorizontalOptions="Center">
+                    <Button
+                            Command="{Binding GoToTestCommand}"
+                            HorizontalOptions="Start"
+                            Text="Želim test" />
+                    <Button
+                            Command="{Binding GoToRevisionCommand}"
+                            Text="Ponavljanje" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!--Exam visible state-->
+        <StackLayout
+            Orientation="Vertical"
+            IsVisible="{Binding ExamIsVisible}"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Margin="20">
+            <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Text="Prevedi rečenicu:&#10;"
+            VerticalOptions="Center" />
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Text="{Binding Question}"
+                VerticalOptions="Center" />
+            <Frame
+                Margin="0,10"
+                Padding="5,0,0,0"
+                BackgroundColor="LightGray"
+                CornerRadius="9">
+                <Entry
+                    Placeholder="Unesite prijevod riječi"
+                    PlaceholderColor="Black"
+                    Margin="5,0,0,0"
+                    Text="{Binding UserAnswer}" />
+            </Frame>
+            <Label
+                TextColor="Red"
+                Text="{Binding CurrentScore}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            <Button
+                Text="Provjera"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand"
+                Command="{Binding CheckAnswerCommand}" />
+        </StackLayout>
+
+        <!--Exam finished-->
+        <Frame
+                IsVisible="{Binding ExamIsCompleted}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            <VerticalStackLayout
+                    Spacing="10">
+                <Label
+                        Text="Test je završen!" />
+                <Label
+                        Text="{Binding CurrentScore}" />
+                <Button
+                    Command="{Binding GoToHomePageCommand}"
+                            HorizontalOptions="Start"
+                            Text="Povratak na početnu stranicu" />
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

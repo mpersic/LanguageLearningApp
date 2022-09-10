@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
-using LanguageLearningApp.ViewModels;
+using LanguageLearningApp.Services.Interfaces;
 using System.Windows.Input;
 
 namespace LanguageLearningApp
@@ -8,6 +8,7 @@ namespace LanguageLearningApp
     public partial class GrammarViewModel : ObservableObject
     {
         #region Fields
+
         public IGrammarService GrammarService;
         private ICommand goToExamCommand;
 
@@ -33,11 +34,16 @@ namespace LanguageLearningApp
 
         #endregion Constructors
 
+
+
         #region Properties
+
         public ICommand GoToExamCommand => goToExamCommand ??= new Command(GoToExam);
         public ICommand TestCommand => testCommand ??= new Command(Test);
 
         #endregion Properties
+
+
 
         #region Methods
 

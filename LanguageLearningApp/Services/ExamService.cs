@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -8,15 +9,15 @@ using LanguageLearningApp.Services.Interfaces;
 
 namespace LanguageLearningApp
 {
-    public class GrammarService : IGrammarService
+    public class ExamService : IExamService
     {
         #region Methods
 
-        public async Task<List<Unit>> GetUnits()
+        public async Task<List<Unit>> GetQuestions(string name)
         {
             try
             {
-                using var stream = await FileSystem.OpenAppPackageFileAsync("grammarunits.json");
+                using var stream = await FileSystem.OpenAppPackageFileAsync($"{name}.json");
                 using var reader = new StreamReader(stream);
 
                 var contents = await reader.ReadToEndAsync();

@@ -49,7 +49,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Data\**" />
+	  <Compile Remove="Data\**" />
+	  <EmbeddedResource Remove="Data\**" />
+	  <MauiCss Remove="Data\**" />
+	  <MauiXaml Remove="Data\**" />
+	  <None Remove="Data\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="grammarunits.json" />
+	  <None Remove="Resources\Raw\vocabularyunits.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,29 +68,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\VocabularyPage.xaml.cs">
+	  <Compile Update="Modules\Vocabulary\VocabularyPage.xaml.cs">
 	    <DependentUpon>VocabularyPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AboutPage.xaml">
+	  <MauiXaml Update="Modules\About\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ExamPage.xaml">
+	  <MauiXaml Update="Modules\Exam\ExamPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\GrammarPage.xaml">
+	  <MauiXaml Update="Modules\Grammar\GrammarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\VocabularyPage.xaml">
+	  <MauiXaml Update="Modules\Vocabulary\VocabularyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Data\" />
-	  <Folder Include="Modules\" />
+	  <Folder Include="Resources\Raw\Vocabulary\" />
 	</ItemGroup>
 
 </Project>

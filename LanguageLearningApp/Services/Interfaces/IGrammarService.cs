@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageLearningApp
+namespace LanguageLearningApp.Services.Interfaces
 {
     public interface IGrammarService
     {

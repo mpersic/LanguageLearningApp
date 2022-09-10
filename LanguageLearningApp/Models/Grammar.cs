@@ -3,7 +3,7 @@
     public class Unit
     {
         #region Properties
-        public string UnitName { get; set; }
+        public string Name { get; set; }
 
         #endregion Properties
     }

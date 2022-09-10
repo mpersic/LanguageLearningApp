@@ -1,1 +1,5 @@
-[{"UnitName":"Perfekt"},{"UnitName":"Present"},{"UnitName":"Praterit"}]
+[
+  { "UnitName": "Perfekt" },
+  { "UnitName": "Present" },
+  { "UnitName": "Praterit" }
+]
