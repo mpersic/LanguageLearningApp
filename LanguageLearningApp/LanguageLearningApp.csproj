@@ -59,6 +59,10 @@
 
 	<ItemGroup>
 	  <None Remove="grammarunits.json" />
+	  <None Remove="Resources\Images\book.svg" />
+	  <None Remove="Resources\Images\information.svg" />
+	  <None Remove="Resources\Images\vocabulary.svg" />
+	  <None Remove="Resources\Raw\revise-identitet.json" />
 	  <None Remove="Resources\Raw\vocabularyunits.json" />
 	</ItemGroup>
 
@@ -68,28 +72,35 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Modules\Vocabulary\VocabularyPage.xaml.cs">
+	  <Compile Update="UI\Modules\Vocabulary\VocabularyPage.xaml.cs">
 	    <DependentUpon>VocabularyPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Modules\About\AboutPage.xaml">
+	  <MauiXaml Update="UI\Modules\About\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Modules\Exam\ExamPage.xaml">
+	  <MauiXaml Update="UI\Modules\Exam\ExamPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Modules\Grammar\GrammarPage.xaml">
+	  <MauiXaml Update="UI\Modules\Grammar\GrammarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Modules\Vocabulary\VocabularyPage.xaml">
+	  <MauiXaml Update="UI\Modules\Vocabulary\VocabularyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Resources\Raw\Vocabulary\" />
+	  <Folder Include="UI\Models\ListUnit\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\revise-identitet.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

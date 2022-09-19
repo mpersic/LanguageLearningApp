@@ -16,16 +16,16 @@
     <Application.MainPage>
         <Shell>
             <TabBar x:Name="MainTabs" Route="MainTab">
-                <Tab Title="Vocabulary" Icon="dotnet_bot.svg">
+                <Tab Title="Vokabular" Icon="vocabulary.svg">
                     <ShellContent ContentTemplate="{DataTemplate local:VocabularyPage}" />
                 </Tab>
                 <Tab
-                    Title="Grammar"
-                    Icon="dotnet_bot.svg"
+                    Title="Gramatika"
+                    Icon="book.svg"
                     Route="GrammarPage">
                     <ShellContent ContentTemplate="{DataTemplate local:GrammarPage}" />
                 </Tab>
-                <Tab Title="About" Icon="dotnet_bot.svg">
+                <Tab Title="Informacije" Icon="information.svg">
                     <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
                 </Tab>
             </TabBar>

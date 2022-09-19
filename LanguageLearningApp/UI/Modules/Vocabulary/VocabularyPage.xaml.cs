@@ -1,4 +1,5 @@
 using LanguageLearningApp.Pages;
+using System.Collections.ObjectModel;
 
 namespace LanguageLearningApp;
 
@@ -8,7 +9,7 @@ public partial class VocabularyPage : ContentPage
 
     private VocabularyViewModel VocabularyViewModel;
 
-    #endregion
+    #endregion Fields
 
     #region Constructors
 
@@ -20,22 +21,27 @@ public partial class VocabularyPage : ContentPage
 
     #endregion Constructors
 
+
+
     #region Methods
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         VocabularyViewModel.IsLoading = true;
-        VocabularyViewModel.VocabularyUnits = await VocabularyViewModel.VocabularyService.GetUnits();
+        var vocabularyUnits = await VocabularyViewModel.VocabularyService.GetUnits();
+        VocabularyViewModel.VocabularyUnits = new ObservableCollection<GradedUnit>
+            (vocabularyUnits.Select(unit => new GradedUnit(unit)).ToList());
+        //VocabularyViewModel.VocabularyUnits = await VocabularyViewModel.VocabularyService.GetUnits();
         VocabularyViewModel.IsLoading = false;
         // ... never getting called
     }
 
-    #endregion Methods
-
     private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        var unit = e.Item as Unit;
+        var unit = e.Item as GradedUnit;
         await Shell.Current.GoToAsync($"{nameof(ExamPage)}?Name={unit.Name}");
     }
+
+    #endregion Methods
 }

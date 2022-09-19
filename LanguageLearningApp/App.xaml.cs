@@ -10,7 +10,6 @@ public partial class App : Application
     {
         InitializeComponent();
         Routing.RegisterRoute(nameof(ExamPage), typeof(ExamPage));
-        //MainPage = new AppShell();
     }
 
     #endregion Constructors

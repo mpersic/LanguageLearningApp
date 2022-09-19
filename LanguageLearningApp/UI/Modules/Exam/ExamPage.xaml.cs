@@ -14,10 +14,10 @@ public partial class ExamPage : ContentPage
 
     #region Constructors
 
-    public ExamPage()
+    public ExamPage(ExamViewModel vm)
     {
         InitializeComponent();
-        BindingContext = ExamViewModel = new ExamViewModel();
+        BindingContext = ExamViewModel = vm;
     }
 
     #endregion Constructors

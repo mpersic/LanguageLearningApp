@@ -14,7 +14,7 @@ namespace LanguageLearningApp
         private bool isLoading;
 
         [ObservableProperty]
-        private ObservableCollection<Unit> vocabularyUnits;
+        private ObservableCollection<GradedUnit> vocabularyUnits;
 
         #endregion Fields
 

@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LanguageLearningApp.Helpers;
 using LanguageLearningApp.Models;
 using LanguageLearningApp.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,39 +13,11 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp
 {
-    public static class Extensions
-    {
-        #region Fields
-
-        private static Random rng = new Random();
-
-        #endregion Fields
-
-
-
-        #region Methods
-
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
-
-        #endregion Methods
-    }
-
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
 
-        private readonly IExamService examService;
+        private readonly IExamService _examService;
 
         [ObservableProperty]
         private string correctAnswer;
@@ -85,19 +59,22 @@ namespace LanguageLearningApp
         private bool revisionIsVisible;
 
         [ObservableProperty]
+        private bool showFinalScore;
+
+        [ObservableProperty]
         private string userAnswer;
 
         #endregion Fields
 
         #region Constructors
 
-        public ExamViewModel()
+        public ExamViewModel(IExamService examService)
         {
             CheckAnswerCommand = new Command(CheckAnwser);
             GoToTestCommand = new Command(GoToTest);
             GoToRevisionCommand = new Command(GoToRevision);
             GoToHomePageCommand = new Command(GoToHomePage);
-            //this.examService = examService;
+            _examService = examService;
         }
 
         #endregion Constructors
@@ -129,6 +106,7 @@ namespace LanguageLearningApp
                     break;
 
                 case ExamState.Enter:
+                    ShowFinalScore = true;
                     PromptForExamIsVisible = false;
                     ExamIsVisible = true;
                     RevisionIsVisible = false;
@@ -137,11 +115,12 @@ namespace LanguageLearningApp
                     break;
 
                 case ExamState.Revise:
+                    ShowFinalScore = false;
                     PromptForExamIsVisible = false;
                     ExamIsVisible = false;
                     RevisionIsVisible = true;
                     ExamIsCompleted = false;
-                    //await LoadAndInitializeExam();
+                    await LoadAndInitializeExam();
                     break;
 
                 case ExamState.Final:
@@ -167,6 +146,16 @@ namespace LanguageLearningApp
 
         private async void CheckAnwser()
         {
+            if (ExamState.Equals(ExamState.Revise))
+            {
+                NextQuestion();
+                return;
+            }
+
+            if (UserAnswer.Length == 0)
+            {
+                return;
+            }
             if (userAnswer == correctAnswer)
             {
                 CorrectAnswers++;
@@ -202,23 +191,28 @@ namespace LanguageLearningApp
         {
             try
             {
+                if (ExamState.Equals(ExamState.Revise))
+                {
+                    ExamName = $"revise-{ExamName}";
+                }
                 IsLoading = true;
                 Questions = new List<QuestionAnswerObj>();
-                using var stream = await FileSystem.OpenAppPackageFileAsync($"{ExamName}.json");
-                using var reader = new StreamReader(stream);
-                var contents = await reader.ReadToEndAsync();
-                Questions = JsonSerializer.Deserialize<List<QuestionAnswerObj>>(contents);
-                Questions.Shuffle();
+                Questions = await _examService.GetQuestions(ExamName);
 
-                //Set initial data
-                CorrectAnswers = 0;
-                CurrentScore = $"Score: {CorrectAnswers}/{Questions.Count}";
+                if (ExamState.Equals(ExamState.Enter))
+                {
+                    UserAnswer = string.Empty;
+                    CorrectAnswers = 0;
+                    CurrentScore = $"Score: {CorrectAnswers}/{Questions.Count}";
+                }
+
                 CurrentQuestion = 0;
                 Question = Questions[CurrentQuestion].Question;
                 CorrectAnswer = Questions[CurrentQuestion].Answer;
             }
             catch (Exception ex)
             {
+                GoToHomePage();
                 IsLoading = false;
             }
         }
@@ -231,8 +225,13 @@ namespace LanguageLearningApp
             }
             else
             {
-                ShowFinalScore();
+                ShowFinalScreen();
             }
+        }
+
+        private void SaveFinalScore()
+        {
+            Preferences.Default.Set(ExamName, $"{CorrectAnswers}/{Questions.Count}");
         }
 
         private void SetUpQuestion()
@@ -245,12 +244,16 @@ namespace LanguageLearningApp
             }
             catch (Exception ex)
             {
-                ShowFinalScore();
+                ShowFinalScreen();
             }
         }
 
-        private void ShowFinalScore()
+        private void ShowFinalScreen()
         {
+            if (ExamState.Equals(ExamState.Enter))
+            {
+                SaveFinalScore();
+            }
             ExamState = ExamState.Final;
             ProcessExamState();
         }
