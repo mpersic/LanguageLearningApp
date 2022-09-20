@@ -7,7 +7,6 @@ namespace LanguageLearningApp
     public partial class VocabularyViewModel : ObservableObject
     {
         #region Fields
-
         public IVocabularyService VocabularyService;
 
         [ObservableProperty]
@@ -26,5 +25,10 @@ namespace LanguageLearningApp
         }
 
         #endregion Constructors
+
+        #region Properties
+        public ObservableCollection<UnitGroup> GroupedUnits { get; set; } = new ObservableCollection<UnitGroup>();
+
+        #endregion Properties
     }
 }

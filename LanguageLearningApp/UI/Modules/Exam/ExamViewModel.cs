@@ -16,7 +16,6 @@ namespace LanguageLearningApp
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
-
         private readonly IExamService _examService;
 
         [ObservableProperty]
@@ -24,6 +23,8 @@ namespace LanguageLearningApp
 
         [ObservableProperty]
         private int correctAnswers;
+
+        private CancellationTokenSource cts;
 
         [ObservableProperty]
         private int currentQuestion;
@@ -74,23 +75,20 @@ namespace LanguageLearningApp
             GoToTestCommand = new Command(GoToTest);
             GoToRevisionCommand = new Command(GoToRevision);
             GoToHomePageCommand = new Command(GoToHomePage);
+            ReadTextCommand = new Command(async () => await ReadTextAsync());
             _examService = examService;
         }
 
         #endregion Constructors
 
-
-
         #region Properties
-
         public Command CheckAnswerCommand { get; }
         public Command GoToHomePageCommand { get; }
         public Command GoToRevisionCommand { get; }
         public Command GoToTestCommand { get; }
+        public Command ReadTextCommand { get; }
 
         #endregion Properties
-
-
 
         #region Methods
 
@@ -137,6 +135,22 @@ namespace LanguageLearningApp
                     RevisionIsVisible = true;
                     break;
             }
+        }
+
+        public async Task ReadTextAsync()
+        {
+            IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
+
+            cts = new CancellationTokenSource();
+            await TextToSpeech.Default.SpeakAsync(
+                Question,
+                new SpeechOptions
+                {
+                    Locale = locales.FirstOrDefault(l => l.Country == "DEU")
+                }
+                , cancelToken: cts.Token);
+
+            // This method will block until utterance finishes.
         }
 
         private bool CanGoToNextQuestion()

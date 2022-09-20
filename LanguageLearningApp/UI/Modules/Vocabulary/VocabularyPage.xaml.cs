@@ -1,12 +1,13 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace LanguageLearningApp;
 
 public partial class VocabularyPage : ContentPage
 {
     #region Fields
-
     private VocabularyViewModel VocabularyViewModel;
 
     #endregion Fields
@@ -21,27 +22,63 @@ public partial class VocabularyPage : ContentPage
 
     #endregion Constructors
 
-
-
     #region Methods
 
     protected override async void OnAppearing()
     {
+        if (VocabularyViewModel.GroupedUnits.Any())
+        {
+            return;
+        }
         base.OnAppearing();
         VocabularyViewModel.IsLoading = true;
         var vocabularyUnits = await VocabularyViewModel.VocabularyService.GetUnits();
-        VocabularyViewModel.VocabularyUnits = new ObservableCollection<GradedUnit>
-            (vocabularyUnits.Select(unit => new GradedUnit(unit)).ToList());
-        //VocabularyViewModel.VocabularyUnits = await VocabularyViewModel.VocabularyService.GetUnits();
+        var gradedUnits =
+            new ObservableCollection<GradedUnit>
+            (vocabularyUnits.Select(
+                unit => new GradedUnit(unit)).ToList());
+
+        var sorted = from unit in gradedUnits
+                     orderby unit.Name
+                     group unit by unit.NameSort into unitGroup
+                     select new Grouping<string, GradedUnit>(unitGroup.Key, unitGroup);
+
+        foreach (var list in sorted)
+        {
+            VocabularyViewModel.GroupedUnits
+                    .Add(new UnitGroup(list.FirstOrDefault().Name, list.ToList()));
+        }
         VocabularyViewModel.IsLoading = false;
-        // ... never getting called
     }
 
     private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         var unit = e.Item as GradedUnit;
-        await Shell.Current.GoToAsync($"{nameof(ExamPage)}?Name={unit.Name}");
+        await Shell.Current.GoToAsync($"{nameof(ExamPage)}?Name={unit.Lesson}");
     }
 
     #endregion Methods
+
+    #region Classes
+
+    public class Grouping<K, T> : ObservableCollection<T>
+    {
+        #region Constructors
+
+        public Grouping(K key, IEnumerable<T> items)
+        {
+            Key = key;
+            foreach (var item in items)
+                this.Items.Add(item);
+        }
+
+        #endregion Constructors
+
+        #region Properties
+        public K Key { get; private set; }
+
+        #endregion Properties
+    }
+
+    #endregion Classes
 }

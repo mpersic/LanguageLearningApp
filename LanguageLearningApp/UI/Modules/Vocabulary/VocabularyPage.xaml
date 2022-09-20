@@ -7,16 +7,30 @@
     Title="Vokabular">
     <VerticalStackLayout>
         <ListView
-            ItemTapped="ListView_ItemTapped"
-            ItemsSource="{Binding VocabularyUnits}"
-            SelectionMode="None"
             Margin="5"
-            VerticalScrollBarVisibility="Never"
-            SeparatorColor="Transparent">
+            IsGroupingEnabled="True"
+            ItemTapped="ListView_ItemTapped"
+            ItemsSource="{Binding GroupedUnits}"
+            SelectionMode="None"
+            SeparatorColor="Transparent"
+            VerticalOptions="StartAndExpand"
+            VerticalScrollBarVisibility="Never">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5,5,5,0">
+                            <Label
+                                FontSize="20"
+                                Text="{Binding Name}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Margin="5">
+                        <Grid Margin="5,0,5,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
@@ -24,16 +38,14 @@
                             <Label
                                 FontAttributes="Bold"
                                 HorizontalOptions="Start"
-                                Text="{Binding Name}"
-                                TextColor="Black"
-                                VerticalOptions="End" />
+                                Text="{Binding Lesson}"
+                                VerticalOptions="Center" />
                             <Label
                                 FontAttributes="Bold"
                                 HorizontalOptions="End"
                                 IsVisible="{Binding ScoreIsVisible}"
                                 Text="{Binding HighScore}"
-                                TextColor="Black"
-                                VerticalOptions="End" />
+                                VerticalOptions="Center" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

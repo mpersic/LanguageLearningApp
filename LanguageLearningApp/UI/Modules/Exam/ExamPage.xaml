@@ -52,9 +52,7 @@
                     PlaceholderColor="Black"
                     Text="{Binding UserAnswer}" />
             </Frame>
-            <StackLayout
-                Spacing="10"
-                VerticalOptions="EndAndExpand">
+            <StackLayout Spacing="10" VerticalOptions="EndAndExpand">
                 <Label
                     HorizontalOptions="Center"
                     Text="{Binding CurrentScore}"
@@ -89,6 +87,10 @@
                 Text="{Binding Question}"
                 TextColor="Red"
                 VerticalOptions="Center" />
+            <Button
+                Command="{Binding ReadTextCommand}"
+                HorizontalOptions="Start"
+                Text="Pročitaj" />
             <Label
                 FontAttributes="Bold"
                 FontSize="Large"
@@ -115,13 +117,17 @@
             IsVisible="{Binding ExamIsCompleted}"
             VerticalOptions="Center">
             <VerticalStackLayout Spacing="10">
-                <Label Text="Test je završen!" />
-                <Label IsVisible="{Binding ShowFinalScore}" Text="{Binding CurrentScore}" />
+                <Label HorizontalOptions="Center" Text="Test je završen!" />
+                <Label
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding ShowFinalScore}"
+                    Text="{Binding CurrentScore}" />
                 <Button
                     Command="{Binding GoToHomePageCommand}"
                     HorizontalOptions="Start"
                     Text="Povratak na početnu stranicu" />
             </VerticalStackLayout>
         </Frame>
+
     </Grid>
 </ContentPage>

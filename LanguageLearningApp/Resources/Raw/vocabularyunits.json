@@ -1,7 +1,30 @@
 [
-  { "Name": "Identität - identitet" },
-  { "Name": "Familie - obitelj" },
-  { "Name": "Monate – mjeseci" },
-  { "Name": "Wohnen – stanovanje" },
-  { "Name": "Freizeit – slobodno vrijeme" }
+  {
+    "Name": "Osnove",
+    "Lesson": "Identität - identitet"
+  },
+  {
+    "Name": "Familie - obitelj",
+    "Lesson": "Kindheit- djetinjstvo"
+  },
+  {
+    "Name": "Familie - obitelj",
+    "Lesson": "Ehe - brak"
+  },
+  {
+    "Name": "Zeit - vrijeme",
+    "Lesson": "Monate - mjeseci"
+  },
+  {
+    "Name": "Zeit - vrijeme",
+    "Lesson": "Woche – tjedan"
+  },
+  {
+    "Name": "Ostalo",
+    "Lesson": "Wohnen – stanovanje"
+  },
+  {
+    "Name": "Ostalo",
+    "Lesson": "Freizeit – slobodno vrijeme"
+  }
 ]

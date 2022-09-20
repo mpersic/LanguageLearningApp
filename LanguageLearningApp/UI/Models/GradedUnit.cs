@@ -13,10 +13,11 @@ namespace LanguageLearningApp
     {
         #region Fields
 
-        private readonly IExamService examService;
-
         [ObservableProperty]
         private string highScore;
+
+        [ObservableProperty]
+        private string lesson;
 
         [ObservableProperty]
         private string name;
@@ -28,13 +29,11 @@ namespace LanguageLearningApp
 
         #region Constructors
 
-        //, IExamService examService
         public GradedUnit(Unit baseUnit)
         {
-            //this.examService = examService;
             Name = baseUnit.Name;
+            Lesson = baseUnit.Lesson;
             HighScore = Preferences.Default.Get($"{baseUnit.Name.Split(" ").Last()}", "");
-            //examService.GetExamScore($"revise-{Name}");
             if (HighScore.Length > 0)
             {
                 ScoreIsVisible = true;
@@ -42,5 +41,20 @@ namespace LanguageLearningApp
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        public string NameSort
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Name) || Name.Length == 0)
+                    return "?";
+
+                return Name[0].ToString().ToUpper();
+            }
+        }
+
+        #endregion Properties
     }
 }
