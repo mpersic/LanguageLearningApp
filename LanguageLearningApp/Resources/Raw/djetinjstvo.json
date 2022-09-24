@@ -50,5 +50,21 @@
   {
     "Question": "Marko hat keine Geschwister.",
     "Answer": "Marko nema braće i sestara."
+  },
+  {
+    "Question": "Ivana hat zwei Brüder.",
+    "Answer": "Ivana ima dva brata."
+  },
+  {
+    "Question": "Ivana hat eine Schwester.",
+    "Answer": "Ivana ima jednu sestru."
+  },
+  {
+    "Question": "Kristina hat vier Schwestern.",
+    "Answer": "Kristina ima četiri sestre."
+  },
+  {
+    "Question": "Kristinas Vorfahren stammen aus dem Dalmatien.",
+    "Answer": "Kristinini preci potječu iz Dalmacije."
   }
 ]

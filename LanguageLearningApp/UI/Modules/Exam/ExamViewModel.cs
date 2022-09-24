@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui.Views;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Helpers;
 using LanguageLearningApp.Models;
@@ -16,7 +18,10 @@ namespace LanguageLearningApp
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
+
         private readonly IExamService _examService;
+
+        private bool _isReading;
 
         [ObservableProperty]
         private string correctAnswer;
@@ -81,7 +86,10 @@ namespace LanguageLearningApp
 
         #endregion Constructors
 
+
+
         #region Properties
+
         public Command CheckAnswerCommand { get; }
         public Command GoToHomePageCommand { get; }
         public Command GoToRevisionCommand { get; }
@@ -89,6 +97,8 @@ namespace LanguageLearningApp
         public Command ReadTextCommand { get; }
 
         #endregion Properties
+
+
 
         #region Methods
 
@@ -139,18 +149,38 @@ namespace LanguageLearningApp
 
         public async Task ReadTextAsync()
         {
-            IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
-
-            cts = new CancellationTokenSource();
-            await TextToSpeech.Default.SpeakAsync(
-                Question,
-                new SpeechOptions
+            try
+            {
+                if (_isReading)
                 {
-                    Locale = locales.FirstOrDefault(l => l.Country == "DEU")
+                    return;
                 }
-                , cancelToken: cts.Token);
+                _isReading = true;
+                IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
 
-            // This method will block until utterance finishes.
+                cts = new CancellationTokenSource();
+                await TextToSpeech.Default.SpeakAsync(
+                    Question,
+                    new SpeechOptions
+                    {
+                        Locale = locales.FirstOrDefault(l => l.Country == "DEU")
+                    }
+                    , cancelToken: cts.Token);
+
+                // This method will block until utterance finishes.
+            }
+            catch (Exception ex)
+            {
+                var toast = Toast.Make(
+                "Something went wrong",
+                ToastDuration.Long,
+                14);
+                await toast.Show();
+            }
+            finally
+            {
+                _isReading = false;
+            }
         }
 
         private bool CanGoToNextQuestion()

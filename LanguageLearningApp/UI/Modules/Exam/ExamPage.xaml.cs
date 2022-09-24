@@ -40,7 +40,7 @@ public partial class ExamPage : ContentPage
 
     #region Methods
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         //ExamViewModel.IsLoading = true;

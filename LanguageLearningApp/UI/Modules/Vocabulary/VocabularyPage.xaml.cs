@@ -1,13 +1,18 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
+using Microsoft.Maui;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 namespace LanguageLearningApp;
 
 public partial class VocabularyPage : ContentPage
 {
     #region Fields
+
     private VocabularyViewModel VocabularyViewModel;
 
     #endregion Fields
@@ -21,6 +26,8 @@ public partial class VocabularyPage : ContentPage
     }
 
     #endregion Constructors
+
+
 
     #region Methods
 
@@ -54,10 +61,23 @@ public partial class VocabularyPage : ContentPage
     private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         var unit = e.Item as GradedUnit;
-        await Shell.Current.GoToAsync($"{nameof(ExamPage)}?Name={unit.Lesson}");
+        if (unit.Lesson.Equals("Dolazi uskoro"))
+        {
+            var toast = Toast.Make(
+                "Dodajemo uskoro :)",
+                ToastDuration.Long,
+                14);
+            await toast.Show();
+        }
+        else
+        {
+            await Shell.Current.GoToAsync($"{nameof(ExamPage)}?Name={unit.Lesson}");
+        }
     }
 
     #endregion Methods
+
+
 
     #region Classes
 
@@ -74,7 +94,10 @@ public partial class VocabularyPage : ContentPage
 
         #endregion Constructors
 
+
+
         #region Properties
+
         public K Key { get; private set; }
 
         #endregion Properties

@@ -3,25 +3,30 @@
     x:Class="LanguageLearningApp.Pages.ExamPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.TabBarIsVisible="False"
     Title="Vježba">
 
     <Grid>
 
         <!--  Prompt for exam state  -->
         <Frame
+            Margin="10,0"
             HorizontalOptions="Center"
             IsVisible="{Binding PromptForExamIsVisible}"
             VerticalOptions="Center">
-            <VerticalStackLayout Spacing="10">
-                <Label Text="Želite li početi test ili ponoviti gradivo?" />
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <StackLayout Spacing="10">
+                <Label
+                    Margin="5,0"
+                    HorizontalTextAlignment="Center"
+                    Text="Želite li pokrenuti novu lekciju ili uvježbavati gradivo?" />
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,5,0,0">
                     <Button
                         Command="{Binding GoToTestCommand}"
                         HorizontalOptions="Start"
-                        Text="Želim test" />
-                    <Button Command="{Binding GoToRevisionCommand}" Text="Ponavljanje" />
+                        Text="Vježba" />
+                    <Button Command="{Binding GoToRevisionCommand}" Text="Lekcija" />
                 </HorizontalStackLayout>
-            </VerticalStackLayout>
+            </StackLayout>
         </Frame>
 
         <!--  Exam visible state  -->
@@ -128,6 +133,5 @@
                     Text="Povratak na početnu stranicu" />
             </VerticalStackLayout>
         </Frame>
-
     </Grid>
 </ContentPage>
