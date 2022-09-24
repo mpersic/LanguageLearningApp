@@ -214,6 +214,11 @@ namespace LanguageLearningApp
             NextQuestion();
         }
 
+        private bool ExamNameContainsNonEnglishCharacter()
+        {
+            return ExamName.Contains('č') || ExamName.Contains('ć');
+        }
+
         private async void GoToHomePage()
         {
             await Shell.Current.GoToAsync("..");
@@ -235,10 +240,15 @@ namespace LanguageLearningApp
         {
             try
             {
+                if (ExamNameContainsNonEnglishCharacter())
+                {
+                    ProcessNonEnglishCharacterRevision();
+                }
                 if (ExamState.Equals(ExamState.Revise))
                 {
                     ExamName = $"revise-{ExamName}";
                 }
+                ExamName.Replace(" ", "");
                 IsLoading = true;
                 Questions = new List<QuestionAnswerObj>();
                 Questions = await _examService.GetQuestions(ExamName);
@@ -271,6 +281,11 @@ namespace LanguageLearningApp
             {
                 ShowFinalScreen();
             }
+        }
+
+        private void ProcessNonEnglishCharacterRevision()
+        {
+            ExamName = ExamName.Replace("č", "c").Replace("ć", "c");
         }
 
         private void SaveFinalScore()

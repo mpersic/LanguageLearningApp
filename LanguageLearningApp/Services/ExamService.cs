@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using LanguageLearningApp.Models;
 using LanguageLearningApp.Pages;
 using LanguageLearningApp.Services.Interfaces;
@@ -58,12 +60,20 @@ namespace LanguageLearningApp
                 var contents = await reader.ReadToEndAsync();
                 var exams = JsonSerializer.Deserialize<List<QuestionAnswerObj>>(contents);
                 exams.Shuffle();
+                if (exams.Count < 10)
+                {
+                    throw new Exception("Not enough items in this unit!");
+                }
                 var tenExams = exams.Take(10).ToList();
                 return tenExams;
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Oops", "Something went wrong", "OK");
+                var toast = Toast.Make(
+                ex.Message,
+                ToastDuration.Long,
+                14);
+                await toast.Show();
                 return new List<QuestionAnswerObj>();
             }
         }
