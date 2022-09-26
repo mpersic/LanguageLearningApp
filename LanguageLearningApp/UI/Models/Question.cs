@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Models
 {
-    public class QuestionAnswerObj
+    public class WordExplanation
     {
         #region Properties
-        public List<string> Answers { get; set; }
-        public List<WordExplanation> Question { get; set; }
+        public string Explanation { get; set; }
+        public string Word { get; set; }
 
         #endregion Properties
     }

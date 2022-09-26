@@ -8,6 +8,7 @@ using LanguageLearningApp.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -18,10 +19,13 @@ namespace LanguageLearningApp
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
-
         private readonly IExamService _examService;
 
+        private List<string> _correctAnswersCollection;
         private bool _isReading;
+
+        [ObservableProperty]
+        private ObservableCollection<WordExplanation> activeQuestion;
 
         [ObservableProperty]
         private string correctAnswer;
@@ -56,7 +60,7 @@ namespace LanguageLearningApp
         private bool promptForExamIsVisible;
 
         [ObservableProperty]
-        private string question;
+        private ObservableCollection<WordExplanation> question;
 
         [ObservableProperty]
         private List<QuestionAnswerObj> questions;
@@ -82,14 +86,14 @@ namespace LanguageLearningApp
             GoToHomePageCommand = new Command(GoToHomePage);
             ReadTextCommand = new Command(async () => await ReadTextAsync());
             _examService = examService;
+            _correctAnswersCollection = new List<string>();
+            activeQuestion = new ObservableCollection<WordExplanation>();
+            Question = new ObservableCollection<WordExplanation>();
         }
 
         #endregion Constructors
 
-
-
         #region Properties
-
         public Command CheckAnswerCommand { get; }
         public Command GoToHomePageCommand { get; }
         public Command GoToRevisionCommand { get; }
@@ -97,8 +101,6 @@ namespace LanguageLearningApp
         public Command ReadTextCommand { get; }
 
         #endregion Properties
-
-
 
         #region Methods
 
@@ -159,13 +161,13 @@ namespace LanguageLearningApp
                 IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
 
                 cts = new CancellationTokenSource();
-                await TextToSpeech.Default.SpeakAsync(
-                    Question,
-                    new SpeechOptions
-                    {
-                        Locale = locales.FirstOrDefault(l => l.Country == "DEU")
-                    }
-                    , cancelToken: cts.Token);
+                //await TextToSpeech.Default.SpeakAsync(
+                //    Question,
+                //    new SpeechOptions
+                //    {
+                //        Locale = locales.FirstOrDefault(l => l.Country == "DEU")
+                //    }
+                //    , cancelToken: cts.Token);
 
                 // This method will block until utterance finishes.
             }
@@ -200,7 +202,7 @@ namespace LanguageLearningApp
             {
                 return;
             }
-            if (userAnswer == correctAnswer)
+            if (CheckIfAnswerIsValid())
             {
                 CorrectAnswers++;
                 CurrentScore = $"Score: {CorrectAnswers}/{Questions.Count}";
@@ -212,6 +214,11 @@ namespace LanguageLearningApp
             }
             UserAnswer = string.Empty;
             NextQuestion();
+        }
+
+        private bool CheckIfAnswerIsValid()
+        {
+            return _correctAnswersCollection.Contains(UserAnswer);
         }
 
         private bool ExamNameContainsNonEnglishCharacter()
@@ -261,8 +268,11 @@ namespace LanguageLearningApp
                 }
 
                 CurrentQuestion = 0;
-                Question = Questions[CurrentQuestion].Question;
-                CorrectAnswer = Questions[CurrentQuestion].Answer;
+                foreach (var question in Questions[CurrentQuestion].Question)
+                {
+                    ActiveQuestion.Add(question);
+                }
+                CorrectAnswer = Questions[CurrentQuestion].Answers.First();
             }
             catch (Exception ex)
             {
@@ -298,8 +308,13 @@ namespace LanguageLearningApp
             try
             {
                 CurrentQuestion++;
-                Question = Questions[CurrentQuestion].Question;
-                CorrectAnswer = Questions[CurrentQuestion].Answer;
+                foreach (var question in Questions[CurrentQuestion].Question)
+                {
+                    Question.Add(question);
+                }
+                //Question = Questions[CurrentQuestion].Questions;
+                _correctAnswersCollection = Questions[CurrentQuestion].Answers;
+                CorrectAnswer = Questions[CurrentQuestion].Answers.First();
             }
             catch (Exception ex)
             {

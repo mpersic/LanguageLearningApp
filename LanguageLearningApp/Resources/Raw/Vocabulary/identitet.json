@@ -1,46 +1,101 @@
 [
   {
-    "Question": "Mein Name ist Luka.",
-    "Answer": "Moje ime je Luka."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich heiße Ana.",
-    "Answer": "Zovem se Ana."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich lebe in Deutschland.",
-    "Answer": "Živim u Njemačkoj."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich komme aus Kroatien.",
-    "Answer": "Dolazim iz Hrvatske."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich bin zwanzig Jahre alt.",
-    "Answer": "Imam dvadeset godina."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich bin Lehrerin von Beruf.",
-    "Answer": "Po zanimanju sam učiteljica."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich habe zwei Kinder.",
-    "Answer": "Imam dvoje djece."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich komme aus Deutschland.",
-    "Answer": "Ja dolazim iz Njemačke."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich bin Tom.",
-    "Answer": "Ja sam Tom."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich bin einzelkind.",
-    "Answer": "Ja sam jedinac."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   },
   {
-    "Question": "Ich wohne in Berlin.",
-    "Answer": "Živim u Berlinu."
+    "Question": [
+      {
+        "Word": "Ich",
+        "Explanation": "bla"
+      }
+    ],
+    "Answers": [ "Imam dvoje djece." ]
   }
 ]
