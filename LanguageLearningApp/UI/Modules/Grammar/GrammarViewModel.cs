@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LanguageLearningApp.Pages;
 using LanguageLearningApp.Services.Interfaces;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace LanguageLearningApp
@@ -40,6 +41,9 @@ namespace LanguageLearningApp
 
         public ICommand GoToExamCommand => goToExamCommand ??= new Command(GoToExam);
         public ICommand TestCommand => testCommand ??= new Command(Test);
+
+        public ObservableCollection<UnitGroup> GroupedUnits { get; set; } = new ObservableCollection<UnitGroup>();
+
 
         #endregion Properties
 

@@ -1,3 +1,6 @@
+using System.Collections.ObjectModel;
+using static LanguageLearningApp.VocabularyPage;
+
 namespace LanguageLearningApp;
 
 public partial class GrammarPage : ContentPage
@@ -23,7 +26,20 @@ public partial class GrammarPage : ContentPage
     {
         base.OnAppearing();
         GrammarViewModel.IsLoading = true;
-        GrammarViewModel.GrammarUnits = await GrammarViewModel.GrammarService.GetUnits();
+        var grammarUnits = await GrammarViewModel.GrammarService.GetUnits();
+        var gradedUnits =
+            new ObservableCollection<GradedUnit>
+            (grammarUnits.Select(
+                unit => new GradedUnit(unit)).ToList());
+        var sorted = from unit in gradedUnits
+                     orderby unit.Name
+                     group unit by unit.NameSort into unitGroup
+                     select new Grouping<string, GradedUnit>(unitGroup.Key, unitGroup);
+        foreach (var list in sorted)
+        {
+            GrammarViewModel.GroupedUnits
+                    .Add(new UnitGroup(list.FirstOrDefault().Name, list.ToList()));
+        }
         GrammarViewModel.IsLoading = false;
         // ... never getting called
     }

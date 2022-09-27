@@ -9,8 +9,8 @@ namespace LanguageLearningApp.Models
     public class QuestionAnswerObj
     {
         #region Properties
-        public List<string> Answers { get; set; }
-        public List<WordExplanation> Question { get; set; }
+        public List<string> Answer { get; set; }
+        public string Question { get; set; }
 
         #endregion Properties
     }

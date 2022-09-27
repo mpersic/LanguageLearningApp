@@ -19,6 +19,7 @@ namespace LanguageLearningApp
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
+
         private readonly IExamService _examService;
 
         private List<string> _correctAnswersCollection;
@@ -60,6 +61,9 @@ namespace LanguageLearningApp
         private bool promptForExamIsVisible;
 
         [ObservableProperty]
+        private string visibleQuestion;
+
+        [ObservableProperty]
         private ObservableCollection<WordExplanation> question;
 
         [ObservableProperty]
@@ -84,6 +88,7 @@ namespace LanguageLearningApp
             GoToTestCommand = new Command(GoToTest);
             GoToRevisionCommand = new Command(GoToRevision);
             GoToHomePageCommand = new Command(GoToHomePage);
+            ShowAdditionalInfoCommand = new Command<WordExplanation>(selectedWord => ShowAdditionalInfo(selectedWord));
             ReadTextCommand = new Command(async () => await ReadTextAsync());
             _examService = examService;
             _correctAnswersCollection = new List<string>();
@@ -93,14 +98,21 @@ namespace LanguageLearningApp
 
         #endregion Constructors
 
+
+
         #region Properties
+
         public Command CheckAnswerCommand { get; }
         public Command GoToHomePageCommand { get; }
         public Command GoToRevisionCommand { get; }
         public Command GoToTestCommand { get; }
         public Command ReadTextCommand { get; }
 
+        public Command ShowAdditionalInfoCommand { get; }
+
         #endregion Properties
+
+
 
         #region Methods
 
@@ -223,7 +235,7 @@ namespace LanguageLearningApp
 
         private bool ExamNameContainsNonEnglishCharacter()
         {
-            return ExamName.Contains('č') || ExamName.Contains('ć');
+            return ExamName.Contains('č') || ExamName.Contains('ć') ||ExamName.Contains('š');
         }
 
         private async void GoToHomePage()
@@ -268,11 +280,12 @@ namespace LanguageLearningApp
                 }
 
                 CurrentQuestion = 0;
-                foreach (var question in Questions[CurrentQuestion].Question)
-                {
-                    ActiveQuestion.Add(question);
-                }
-                CorrectAnswer = Questions[CurrentQuestion].Answers.First();
+                //foreach (var question in Questions[CurrentQuestion].Question)
+                //{
+                //    VisibleQuestion += question;
+                //}
+                VisibleQuestion = Questions[CurrentQuestion].Question;
+                CorrectAnswer = Questions[CurrentQuestion].Answer.First();
             }
             catch (Exception ex)
             {
@@ -295,7 +308,7 @@ namespace LanguageLearningApp
 
         private void ProcessNonEnglishCharacterRevision()
         {
-            ExamName = ExamName.Replace("č", "c").Replace("ć", "c");
+            ExamName = ExamName.Replace("č", "c").Replace("ć", "c").Replace("š","s");
         }
 
         private void SaveFinalScore()
@@ -307,19 +320,26 @@ namespace LanguageLearningApp
         {
             try
             {
+                VisibleQuestion = "";
                 CurrentQuestion++;
-                foreach (var question in Questions[CurrentQuestion].Question)
-                {
-                    Question.Add(question);
-                }
-                //Question = Questions[CurrentQuestion].Questions;
-                _correctAnswersCollection = Questions[CurrentQuestion].Answers;
-                CorrectAnswer = Questions[CurrentQuestion].Answers.First();
+                //foreach (var question in Questions[CurrentQuestion].Question)
+                //{
+                //    VisibleQuestion += question;
+                //    //Question.Add(question);
+                //}
+                VisibleQuestion = Questions[CurrentQuestion].Question;
+                _correctAnswersCollection = Questions[CurrentQuestion].Answer;
+                CorrectAnswer = Questions[CurrentQuestion].Answer.First();
             }
             catch (Exception ex)
             {
                 ShowFinalScreen();
             }
+        }
+
+        private async void ShowAdditionalInfo(WordExplanation selectedWord)
+        {
+            await Shell.Current.DisplayAlert(selectedWord.Word, selectedWord.Explanation, "OK");
         }
 
         private void ShowFinalScreen()

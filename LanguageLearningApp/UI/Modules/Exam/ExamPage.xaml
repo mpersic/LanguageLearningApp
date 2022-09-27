@@ -48,8 +48,14 @@
                 HorizontalOptions="Start"
                 Text="Prevedi rečenicu:&#10;"
                 VerticalOptions="Center" />
-            <ListView
-                ItemsSource="{Binding Question}"
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Text="{Binding VisibleQuestion}"
+                VerticalOptions="Center" />
+            
+            <!--<ListView
+                ItemsSource="{Binding ActiveQuestion}"
                 SelectionMode="None"
                 SeparatorColor="Transparent"
                 VerticalOptions="StartAndExpand"
@@ -72,7 +78,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
 
             <Frame
                 Margin="0,10"

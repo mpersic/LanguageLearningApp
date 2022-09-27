@@ -1,14 +1,14 @@
 [
   {
     "Question": "Die Familie isst in einem Restaurant zu Abend.",
-    "Answer": "Obitelj večera u restoranu."
+    "Answer": [ "Obitelj večera u restoranu." ]
   },
   {
     "Question": "Kann ich bitte eine Speisekarte haben?",
-    "Answer": "Mogu li molim Vas dobiti meni?"
+    "Answer": [ "Mogu li molim Vas dobiti meni?" ]
   },
   {
     "Question": "Die Familie probiert ein Nationalgericht.",
-    "Answer": "Obitelj kuša nacionalno jelo."
+    "Answer": [ "Obitelj kuša nacionalno jelo." ]
   }
 ]
