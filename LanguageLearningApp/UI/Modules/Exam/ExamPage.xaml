@@ -3,10 +3,7 @@
     x:Class="LanguageLearningApp.Pages.ExamPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-    xmlns:converters="clr-namespace:CommunityToolkit.Maui.Converters;assembly=CommunityToolkit.Maui"
-    xmlns:effects="clr-namespace:CommunityToolkit.Maui.Effects;assembly=CommunityToolkit.Maui"
-    xmlns:views="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    x:Name="ExamPageName"
     Title="Vježba"
     Shell.TabBarIsVisible="False">
 
@@ -48,12 +45,31 @@
                 HorizontalOptions="Start"
                 Text="Prevedi rečenicu:&#10;"
                 VerticalOptions="Center" />
-            <Label
+            <!--<Label
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
                 Text="{Binding VisibleQuestion}"
-                VerticalOptions="Center" />
-            
+                VerticalOptions="Center" />-->
+
+            <StackLayout
+                x:Name="QuestionStackLayout"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Orientation="Vertical">
+                <StackLayout
+                    x:Name="QuestionHorizontalLayout1"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal" />
+                <StackLayout
+                    x:Name="QuestionHorizontalLayout2"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal" />
+                <StackLayout
+                    x:Name="QuestionHorizontalLayout3"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal" />
+            </StackLayout>
+
             <!--<ListView
                 ItemsSource="{Binding ActiveQuestion}"
                 SelectionMode="None"

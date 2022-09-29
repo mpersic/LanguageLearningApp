@@ -19,7 +19,6 @@ namespace LanguageLearningApp
     public partial class ExamViewModel : ObservableObject
     {
         #region Fields
-
         private readonly IExamService _examService;
 
         private List<string> _correctAnswersCollection;
@@ -61,9 +60,6 @@ namespace LanguageLearningApp
         private bool promptForExamIsVisible;
 
         [ObservableProperty]
-        private string visibleQuestion;
-
-        [ObservableProperty]
         private ObservableCollection<WordExplanation> question;
 
         [ObservableProperty]
@@ -77,6 +73,9 @@ namespace LanguageLearningApp
 
         [ObservableProperty]
         private string userAnswer;
+
+        [ObservableProperty]
+        private string visibleQuestion;
 
         #endregion Fields
 
@@ -98,10 +97,19 @@ namespace LanguageLearningApp
 
         #endregion Constructors
 
+        #region Delegates
 
+        public delegate void InitializeQuestion();
+
+        #endregion Delegates
+
+        #region Events
+
+        public event InitializeQuestion InitializeQuestionEvent;
+
+        #endregion Events
 
         #region Properties
-
         public Command CheckAnswerCommand { get; }
         public Command GoToHomePageCommand { get; }
         public Command GoToRevisionCommand { get; }
@@ -111,8 +119,6 @@ namespace LanguageLearningApp
         public Command ShowAdditionalInfoCommand { get; }
 
         #endregion Properties
-
-
 
         #region Methods
 
@@ -235,7 +241,7 @@ namespace LanguageLearningApp
 
         private bool ExamNameContainsNonEnglishCharacter()
         {
-            return ExamName.Contains('č') || ExamName.Contains('ć') ||ExamName.Contains('š');
+            return ExamName.Contains('č') || ExamName.Contains('ć') || ExamName.Contains('š');
         }
 
         private async void GoToHomePage()
@@ -284,7 +290,9 @@ namespace LanguageLearningApp
                 //{
                 //    VisibleQuestion += question;
                 //}
+                //}
                 VisibleQuestion = Questions[CurrentQuestion].Question;
+                InitializeQuestionEvent?.Invoke();
                 CorrectAnswer = Questions[CurrentQuestion].Answer.First();
             }
             catch (Exception ex)
@@ -308,7 +316,7 @@ namespace LanguageLearningApp
 
         private void ProcessNonEnglishCharacterRevision()
         {
-            ExamName = ExamName.Replace("č", "c").Replace("ć", "c").Replace("š","s");
+            ExamName = ExamName.Replace("č", "c").Replace("ć", "c").Replace("š", "s");
         }
 
         private void SaveFinalScore()
@@ -328,6 +336,7 @@ namespace LanguageLearningApp
                 //    //Question.Add(question);
                 //}
                 VisibleQuestion = Questions[CurrentQuestion].Question;
+                InitializeQuestionEvent?.Invoke();
                 _correctAnswersCollection = Questions[CurrentQuestion].Answer;
                 CorrectAnswer = Questions[CurrentQuestion].Answer.First();
             }
