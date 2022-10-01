@@ -82,6 +82,25 @@
 	  <None Remove="Resources\Raw\Vocabulary\odjeca.json" />
 	  <None Remove="Resources\Raw\Vocabulary\rastava.json" />
 	  <None Remove="Resources\Raw\Vocabulary\restoranu.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-brak.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-djetinjstvo.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-dorucak.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-identitet.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-kaficu.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-kuhanje.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-mjeseci.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-namjestaj.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-odjeca.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-pitanja.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-pozdravi.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-rastava.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-restoranu.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-rucak.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-slastice.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-smrt.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-stanovanje.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-tjedan.json" />
+	  <None Remove="Resources\Raw\Vocabulary\revise-voce.json" />
 	  <None Remove="Resources\Raw\Vocabulary\rucak.json" />
 	  <None Remove="Resources\Raw\Vocabulary\slastice.json" />
 	  <None Remove="Resources\Raw\Vocabulary\smrt.json" />
@@ -132,13 +151,70 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-brak.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-djetinjstvo.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-dorucak.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-identitet.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-kaficu.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-kuhanje.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-mjeseci.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-namjestaj.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-odjeca.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Vocabulary\odjeca.json">
 	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Vocabulary\namjestaj.json">
 	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-pitanja.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-pozdravi.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-rastava.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-restoranu.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Vocabulary\restoranu.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-rucak.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-slastice.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-smrt.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-stanovanje.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-tjedan.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-voce.json">
 	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Vocabulary\voce.json">

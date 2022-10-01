@@ -57,6 +57,9 @@ namespace LanguageLearningApp
         private bool isLoading;
 
         [ObservableProperty]
+        private string name;
+
+        [ObservableProperty]
         private bool promptForExamIsVisible;
 
         [ObservableProperty]
@@ -179,13 +182,13 @@ namespace LanguageLearningApp
                 IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
 
                 cts = new CancellationTokenSource();
-                //await TextToSpeech.Default.SpeakAsync(
-                //    Question,
-                //    new SpeechOptions
-                //    {
-                //        Locale = locales.FirstOrDefault(l => l.Country == "DEU")
-                //    }
-                //    , cancelToken: cts.Token);
+                await TextToSpeech.Default.SpeakAsync(
+                    VisibleQuestion,
+                    new SpeechOptions
+                    {
+                        Locale = locales.FirstOrDefault(l => l.Country == "DEU")
+                    }
+                    , cancelToken: cts.Token);
 
                 // This method will block until utterance finishes.
             }

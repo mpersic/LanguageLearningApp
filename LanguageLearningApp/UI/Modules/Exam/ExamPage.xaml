@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ExamPageName"
-    Title="Vježba"
+    Title="{Binding Name}"
     Shell.TabBarIsVisible="False">
 
     <Grid>
@@ -43,15 +43,15 @@
             <Label
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
-                Text="Prevedi rečenicu:&#10;"
+                Text="Unesite prijevod rečenice:&#10;"
                 VerticalOptions="Center" />
-            <!--<Label
+            <Label
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
                 Text="{Binding VisibleQuestion}"
-                VerticalOptions="Center" />-->
+                VerticalOptions="Center" />
 
-            <StackLayout
+            <!--<StackLayout
                 x:Name="QuestionStackLayout"
                 HeightRequest="100"
                 HorizontalOptions="Start"
@@ -68,7 +68,7 @@
                     x:Name="QuestionHorizontalLayout3"
                     HorizontalOptions="Start"
                     Orientation="Horizontal" />
-            </StackLayout>
+            </StackLayout>-->
 
             <!--<ListView
                 ItemsSource="{Binding ActiveQuestion}"
@@ -133,7 +133,7 @@
                 FontAttributes="Bold"
                 FontSize="Medium"
                 HorizontalOptions="Start"
-                Text="{Binding Question}"
+                Text="{Binding VisibleQuestion}"
                 VerticalOptions="Center" />
             <Button
                 Command="{Binding ReadTextCommand}"
