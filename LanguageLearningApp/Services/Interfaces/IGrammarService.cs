@@ -13,6 +13,8 @@ namespace LanguageLearningApp.Services.Interfaces
 
         Task<ObservableCollection<Unit>> GetUnits();
 
+        Task<ObservableCollection<Unit>> GetSelectedUnits(string selectedUnitName);
+
         #endregion Methods
     }
 }

@@ -47,7 +47,8 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   	<MauiAsset Include="Resources\Raw\Vocabulary\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+    <MauiAsset Include="Resources\Raw\Grammar\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 
 	<ItemGroup>
 	  <AndroidResource Remove="Data\**" />
@@ -65,6 +66,14 @@
 	  <None Remove="Resources\Images\vocabulary.svg" />
 	  <None Remove="Resources\Raw\djetinjstvo-revise.json" />
 	  <None Remove="Resources\Raw\djetinjstvo.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-brojevi.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-glagoli.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-imenice.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-pridjevi.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-prijedlozi.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-prilozi.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-recenice.json" />
+	  <None Remove="Resources\Raw\Grammar\grammarunits-zamjenice.json" />
 	  <None Remove="Resources\Raw\identitet-revise.json" />
 	  <None Remove="Resources\Raw\pitanja-revise.json" />
 	  <None Remove="Resources\Raw\pitanja.json" />
@@ -144,6 +153,7 @@
 
 	<ItemGroup>
 	  <Folder Include="UI\Models\ListUnit\" />
+	  <Folder Include="UI\Modules\Grammar\UnitSelection\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -151,6 +161,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-recenice.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-prijedlozi.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-prilozi.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-brojevi.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-zamjenice.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-pridjevi.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-imenice.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-glagoli.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Vocabulary\revise-brak.json">
 	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 	  </MauiAsset>

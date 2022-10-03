@@ -8,28 +8,15 @@
 
     <ListView
         Margin="5"
-        IsGroupingEnabled="True"
         ItemsSource="{Binding GroupedUnits}"
         SelectionMode="None"
-        SeparatorColor="Transparent"
+        SeparatorVisibility="None"
         VerticalOptions="StartAndExpand"
         VerticalScrollBarVisibility="Never">
-        <ListView.GroupHeaderTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Grid Margin="5,5,5,0">
-                        <Label
-                            FontSize="20"
-                            Text="{Binding Name}"
-                            VerticalOptions="Center" />
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.GroupHeaderTemplate>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="5,0,5,5">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="auto" />
@@ -37,13 +24,7 @@
                         <Label
                             FontAttributes="Bold"
                             HorizontalOptions="Start"
-                            Text="{Binding Lesson}"
-                            VerticalOptions="Center" />
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="End"
-                            IsVisible="{Binding ScoreIsVisible}"
-                            Text="{Binding HighScore}"
+                            Text="{Binding Name}"
                             VerticalOptions="Center" />
                     </Grid>
                 </ViewCell>
