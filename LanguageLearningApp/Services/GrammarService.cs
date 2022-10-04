@@ -5,31 +5,38 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using LanguageLearningApp.Services.Interfaces;
 
 namespace LanguageLearningApp
 {
     public class GrammarService : IGrammarService
     {
-        public async Task<ObservableCollection<Unit>> GetSelectedUnits(string selectedUnitName)
+        #region Methods
+
+        public async Task<List<Unit>> GetSelectedUnits(string selectedUnitName)
         {
             try
             {
-                using var stream = await FileSystem.OpenAppPackageFileAsync($"grammarunits-{selectedUnitName}.json");
+                var processedName = selectedUnitName.ToLower();
+                if (processedName.Contains("č"))
+                {
+                    processedName = processedName.Replace("č", "c");
+                }
+                using var stream = await FileSystem.OpenAppPackageFileAsync($"grammarunits-{processedName}.json");
                 using var reader = new StreamReader(stream);
 
                 var contents = await reader.ReadToEndAsync();
-                return JsonSerializer.Deserialize<ObservableCollection<Unit>>(contents);
+                return JsonSerializer.Deserialize<List<Unit>>(contents);
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Oops", "Something went wrong", "OK");
-                return new ObservableCollection<Unit>();
+                return new List<Unit>();
             }
         }
-        #region Methods
 
-        public async Task<ObservableCollection<Unit>> GetUnits()
+        public async Task<List<Unit>> GetUnits()
         {
             try
             {
@@ -37,12 +44,12 @@ namespace LanguageLearningApp
                 using var reader = new StreamReader(stream);
 
                 var contents = await reader.ReadToEndAsync();
-                return JsonSerializer.Deserialize<ObservableCollection<Unit>>(contents);
+                return JsonSerializer.Deserialize<List<Unit>>(contents);
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Oops", "Something went wrong", "OK");
-                return new ObservableCollection<Unit>();
+                return new List<Unit>();
             }
         }
 

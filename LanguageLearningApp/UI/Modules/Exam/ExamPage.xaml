@@ -43,11 +43,6 @@
             <Label
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
-                Text="Unesite prijevod rečenice:&#10;"
-                VerticalOptions="Center" />
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="Start"
                 Text="{Binding VisibleQuestion}"
                 VerticalOptions="Center" />
 
@@ -103,7 +98,7 @@
                 CornerRadius="9">
                 <Entry
                     Margin="5,0,0,0"
-                    Placeholder="Unesite prijevod riječi"
+                    Placeholder="Unesite prijevod rečenice"
                     PlaceholderColor="Black"
                     Text="{Binding UserAnswer}" />
             </Frame>

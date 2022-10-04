@@ -4,4 +4,31 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="GrammarUnitSelectionPageE"
-    Title="{Binding Name}" />
+    Title="{Binding Name}"
+    Shell.TabBarIsVisible="False">
+    <ListView
+        Margin="5"
+        ItemsSource="{Binding GrammarUnits}"
+        SelectionMode="None"
+        SeparatorVisibility="None"
+        VerticalOptions="StartAndExpand"
+        VerticalScrollBarVisibility="Never">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Lesson}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

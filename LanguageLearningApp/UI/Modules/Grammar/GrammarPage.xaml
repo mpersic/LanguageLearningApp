@@ -8,7 +8,8 @@
 
     <ListView
         Margin="5"
-        ItemsSource="{Binding GroupedUnits}"
+        ItemTapped="ListView_ItemTapped"
+        ItemsSource="{Binding GrammarUnits}"
         SelectionMode="None"
         SeparatorVisibility="None"
         VerticalOptions="StartAndExpand"

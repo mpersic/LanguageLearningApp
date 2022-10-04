@@ -10,6 +10,7 @@ public partial class App : Application
     {
         InitializeComponent();
         Routing.RegisterRoute(nameof(ExamPage), typeof(ExamPage));
+        Routing.RegisterRoute(nameof(GrammarUnitSelectionPage), typeof(GrammarUnitSelectionPage));
     }
 
     #endregion Constructors

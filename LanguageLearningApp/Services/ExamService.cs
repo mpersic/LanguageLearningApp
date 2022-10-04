@@ -16,12 +16,9 @@ namespace LanguageLearningApp
     public static class Extensions
     {
         #region Fields
-
         private static Random rng = new Random();
 
         #endregion Fields
-
-
 
         #region Methods
 
@@ -59,7 +56,10 @@ namespace LanguageLearningApp
 
                 var contents = await reader.ReadToEndAsync();
                 var exams = JsonSerializer.Deserialize<List<QuestionAnswerObj>>(contents);
-                exams.Shuffle();
+                if (!name.Contains("revise"))
+                {
+                    exams.Shuffle();
+                }
                 if (exams.Count < 10)
                 {
                     throw new Exception("Not enough items in this unit!");

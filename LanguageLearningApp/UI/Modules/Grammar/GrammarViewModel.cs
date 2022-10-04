@@ -9,9 +9,7 @@ namespace LanguageLearningApp
     public partial class GrammarViewModel : ObservableObject
     {
         #region Fields
-
         public IGrammarService GrammarService;
-        private ICommand goToExamCommand;
 
         [ObservableProperty]
         private List<Unit> grammarUnits;
@@ -22,8 +20,6 @@ namespace LanguageLearningApp
         [ObservableProperty]
         private string name;
 
-        private ICommand testCommand;
-
         #endregion Fields
 
         #region Constructors
@@ -31,36 +27,9 @@ namespace LanguageLearningApp
         public GrammarViewModel(IGrammarService grammarService)
         {
             GrammarService = grammarService;
+            GrammarUnits = new List<Unit>();
         }
 
         #endregion Constructors
-
-
-
-        #region Properties
-
-        public ICommand GoToExamCommand => goToExamCommand ??= new Command(GoToExam);
-        public ICommand TestCommand => testCommand ??= new Command(Test);
-
-        public ObservableCollection<UnitGroup> GroupedUnits { get; set; } = new ObservableCollection<UnitGroup>();
-
-
-        #endregion Properties
-
-
-
-        #region Methods
-
-        private async void GoToExam()
-        {
-            await Shell.Current.GoToAsync($"{nameof(ExamPage)}");
-        }
-
-        private void Test()
-        {
-            Console.WriteLine("Hello");
-        }
-
-        #endregion Methods
     }
 }

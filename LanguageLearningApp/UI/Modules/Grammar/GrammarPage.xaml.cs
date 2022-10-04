@@ -1,3 +1,6 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using LanguageLearningApp.Pages;
 using System.Collections.ObjectModel;
 using static LanguageLearningApp.VocabularyPage;
 
@@ -26,22 +29,26 @@ public partial class GrammarPage : ContentPage
     {
         base.OnAppearing();
         GrammarViewModel.IsLoading = true;
-        var grammarUnits = await GrammarViewModel.GrammarService.GetUnits();
-        var gradedUnits =
-            new ObservableCollection<GradedUnit>
-            (grammarUnits.Select(
-                unit => new GradedUnit(unit)).ToList());
-        var sorted = from unit in gradedUnits
-                     orderby unit.Name
-                     group unit by unit.NameSort into unitGroup
-                     select new Grouping<string, GradedUnit>(unitGroup.Key, unitGroup);
-        foreach (var list in sorted)
-        {
-            GrammarViewModel.GroupedUnits
-                    .Add(new UnitGroup(list.FirstOrDefault().Name, list.ToList()));
-        }
+        var units = await GrammarViewModel.GrammarService.GetUnits();
+        GrammarViewModel.GrammarUnits = units;
         GrammarViewModel.IsLoading = false;
-        // ... never getting called
+    }
+
+    private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        var unit = e.Item as Unit;
+        if (unit.Name.Equals("Dolazi uskoro"))
+        {
+            var toast = Toast.Make(
+                "Dodajemo uskoro :)",
+                ToastDuration.Long,
+                14);
+            await toast.Show();
+        }
+        else
+        {
+            await Shell.Current.GoToAsync($"{nameof(GrammarUnitSelectionPage)}?Name={unit.Name}");
+        }
     }
 
     #endregion Methods

@@ -11,17 +11,27 @@ namespace LanguageLearningApp
 {
     public partial class GrammarUnitSelectionViewModel : ObservableObject
     {
+        #region Fields
         public readonly IGrammarService _grammarService;
 
         [ObservableProperty]
+        private List<GradedUnit> grammarUnits;
+
+        [ObservableProperty]
         private bool isLoading;
+
+        [ObservableProperty]
+        private string name;
+
+        #endregion Fields
+
+        #region Constructors
 
         public GrammarUnitSelectionViewModel(IGrammarService grammarService)
         {
             _grammarService = grammarService;
         }
 
-        public ObservableCollection<UnitGroup> GroupedGrammarUnits { get; set; } = new ObservableCollection<UnitGroup>();
-
+        #endregion Constructors
     }
 }

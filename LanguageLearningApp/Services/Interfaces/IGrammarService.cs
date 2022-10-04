@@ -11,9 +11,9 @@ namespace LanguageLearningApp.Services.Interfaces
     {
         #region Methods
 
-        Task<ObservableCollection<Unit>> GetUnits();
+        Task<List<Unit>> GetSelectedUnits(string selectedUnitName);
 
-        Task<ObservableCollection<Unit>> GetSelectedUnits(string selectedUnitName);
+        Task<List<Unit>> GetUnits();
 
         #endregion Methods
     }

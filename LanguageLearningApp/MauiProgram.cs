@@ -30,11 +30,13 @@ public static class MauiProgram
 
         //viewmodels
         builder.Services.AddSingleton<GrammarViewModel>();
+        builder.Services.AddSingleton<GrammarUnitSelectionViewModel>();
         builder.Services.AddSingleton<VocabularyViewModel>();
         builder.Services.AddSingleton<ExamViewModel>();
 
         //pages
         builder.Services.AddSingleton<GrammarPage>();
+        builder.Services.AddSingleton<GrammarUnitSelectionPage>();
         builder.Services.AddSingleton<VocabularyPage>();
         builder.Services.AddSingleton<ExamPage>();
 
