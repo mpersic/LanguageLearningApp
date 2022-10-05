@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using LanguageLearningApp.Pages;
+using LanguageLearningApp.Services;
 using LanguageLearningApp.Services.Interfaces;
 
 namespace LanguageLearningApp;
@@ -25,18 +26,21 @@ public static class MauiProgram
 
         //services
         builder.Services.AddSingleton<IGrammarService, GrammarService>();
+        builder.Services.AddSingleton<IGrammarExampleService, GrammarExampleService>();
         builder.Services.AddSingleton<IVocabularyService, VocabularyService>();
         builder.Services.AddSingleton<IExamService, ExamService>();
 
         //viewmodels
         builder.Services.AddSingleton<GrammarViewModel>();
         builder.Services.AddSingleton<GrammarUnitSelectionViewModel>();
+        builder.Services.AddSingleton<GrammarExampleViewModel>();
         builder.Services.AddSingleton<VocabularyViewModel>();
         builder.Services.AddSingleton<ExamViewModel>();
 
         //pages
         builder.Services.AddSingleton<GrammarPage>();
         builder.Services.AddSingleton<GrammarUnitSelectionPage>();
+        builder.Services.AddSingleton<GrammarExamplePage>();
         builder.Services.AddSingleton<VocabularyPage>();
         builder.Services.AddSingleton<ExamPage>();
 

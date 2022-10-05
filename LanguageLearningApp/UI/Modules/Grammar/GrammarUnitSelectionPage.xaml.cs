@@ -61,4 +61,9 @@ public partial class GrammarUnitSelectionPage : ContentPage
     }
 
     #endregion Methods
+
+    private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync($"{nameof(GrammarExamplePage)}");
+    }
 }

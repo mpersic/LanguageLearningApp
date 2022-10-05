@@ -1,0 +1,19 @@
+[
+  {
+    "Intro": "Prezent se tvori tako da se glagolskoj osnovi dodaju sljedeći nastavci:",
+    "GlagolPoLicima": [
+      "1. lice jednine: -e",
+      "2. lice jednine: -(e)st",
+      "3. lice jednine: -(e)t",
+      "1. lice množine: -en",
+      "2. lice množine: -(e)t",
+      "3. lice množine: -en"
+    ],
+    "Deklinacija": []
+  },
+  {
+    "Intro": "Glagolska osnova dobije se ako se od infinitiva odbije nastavak –en:",
+    "GlagolPoLicima": [],
+    "Deklinacija": [ "gehen → geh-", "kochen → koch-" ]
+  }
+]

@@ -74,6 +74,7 @@
 	  <None Remove="Resources\Raw\Grammar\grammarunits-prilozi.json" />
 	  <None Remove="Resources\Raw\Grammar\grammarunits-recenice.json" />
 	  <None Remove="Resources\Raw\Grammar\grammarunits-zamjenice.json" />
+	  <None Remove="Resources\Raw\Grammar\prezent-aktiv.json" />
 	  <None Remove="Resources\Raw\identitet-revise.json" />
 	  <None Remove="Resources\Raw\pitanja-revise.json" />
 	  <None Remove="Resources\Raw\pitanja.json" />
@@ -125,6 +126,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="UI\Modules\Grammar\GrammarExamplePage.xaml.cs">
+	    <DependentUpon>GrammarExamplePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="UI\Modules\Vocabulary\VocabularyPage.xaml.cs">
 	    <DependentUpon>VocabularyPage.xaml</DependentUpon>
 	  </Compile>
@@ -141,6 +145,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Modules\Exam\ExamPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Modules\Grammar\GrammarExamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Modules\Grammar\GrammarPage.xaml">
@@ -161,6 +168,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\Grammar\prezent-aktiv.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Grammar\grammarunits-recenice.json">
 	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 	  </MauiAsset>

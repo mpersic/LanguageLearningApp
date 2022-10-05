@@ -11,6 +11,7 @@
         ItemsSource="{Binding GrammarUnits}"
         SelectionMode="None"
         SeparatorVisibility="None"
+        ItemTapped="ListView_ItemTapped"
         VerticalOptions="StartAndExpand"
         VerticalScrollBarVisibility="Never">
         <ListView.ItemTemplate>

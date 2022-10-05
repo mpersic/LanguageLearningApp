@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LanguageLearningApp.GrammarExamplePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LanguageLearningApp"
+    Title="Gramatika">
+
+    <ListView
+        Margin="5"
+        ItemsSource="{Binding GrammarExamples}"
+        SelectionMode="None"
+        SeparatorVisibility="None"
+        VerticalOptions="StartAndExpand"
+        VerticalScrollBarVisibility="Never">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="300" />
+                            <RowDefinition Height="300" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Intro}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Row="1"
+                            BackgroundColor="Red"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            MinimumHeightRequest="100"
+                            Text="{Binding GlagolPoLicima}"
+                            VerticalOptions="Center" />
+                        <ListView
+                            Grid.Row="1"
+                            BackgroundColor="Orange"
+                            ItemsSource="{Binding GlagolPoLicima}"
+                            SelectionMode="None"
+                            SeparatorVisibility="None"
+                            VerticalOptions="Start"
+                            VerticalScrollBarVisibility="Never">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Label
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding .}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ListView
+                            Grid.Row="2"
+                            BackgroundColor="Pink"
+                            ItemsSource="{Binding GrammarExamples.Deklinacija}"
+                            SelectionMode="None"
+                            SeparatorVisibility="None"
+                            VerticalOptions="Start"
+                            VerticalScrollBarVisibility="Never">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Label
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding .}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--<Label
+                            Grid.Row="2"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Deklinacija}"
+                            VerticalOptions="Center" />-->
+                        <!--<Label Text="{Binding GlagolPoLicima}" />-->
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
